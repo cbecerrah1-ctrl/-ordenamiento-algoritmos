@@ -1,3 +1,9 @@
+/*
+ * Analisis de Algoritmos - Universidad Central
+ * Autor: Cesar Camilo Becerra Herrera
+ * Profesor: Giovanny Alexander Riveros
+ * Tema: Selection Sort - comparativo de algoritmos de ordenamiento
+ */
 package ordenamiento;
 
 /**
@@ -19,6 +25,12 @@ public interface Ordenamiento {
     /** Comparaciones entre elementos hechas en el ultimo ordenar(). */
     long getComparaciones();
 
-    /** Intercambios (o movimientos) hechos en el ultimo ordenar(). */
+    /** Intercambios (o movimientos de datos) hechos en el ultimo ordenar(). */
     long getIntercambios();
+
+    /** Comparaciones del PEOR caso segun la teoria, para n datos. */
+    double teoricoComparaciones(int n);
+
+    /** Intercambios o movimientos maximos segun la teoria, para n datos. */
+    double teoricoIntercambios(int n);
 }

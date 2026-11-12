@@ -18,6 +18,18 @@ Ejemplo con `8, 3, 10, 1, 5, 12, 2, 7`:
 | 6 | 1, 2, 3, 5, 7, 8, 10, 12 |
 | 7 | 1, 2, 3, 5, 7, 8, 10, 12 |
 
+## Seudocódigo
+```
+SelectionSort(A, n)
+  para i desde 0 hasta n-2 hacer
+    min <- i
+    para j desde i+1 hasta n-1 hacer
+      si A[j] < A[min] entonces
+        min <- j
+    si min != i entonces
+      intercambiar A[i] con A[min]
+```
+
 ## Características
 - Se ordena en el mismo arreglo: memoria extra O(1).
 - No es estable (el intercambio puede saltar elementos iguales).

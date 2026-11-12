@@ -1,3 +1,9 @@
+/*
+ * Analisis de Algoritmos - Universidad Central
+ * Autor: Cesar Camilo Becerra Herrera
+ * Profesor: Giovanny Alexander Riveros
+ * Tema: Selection Sort - comparativo de algoritmos de ordenamiento
+ */
 package ordenamiento;
 
 import java.util.Arrays;

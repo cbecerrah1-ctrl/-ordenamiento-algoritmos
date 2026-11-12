@@ -1,3 +1,9 @@
+/*
+ * Analisis de Algoritmos - Universidad Central
+ * Autor: Cesar Camilo Becerra Herrera
+ * Profesor: Giovanny Alexander Riveros
+ * Tema: Selection Sort - comparativo de algoritmos de ordenamiento
+ */
 package ordenamiento;
 
 import java.io.File;
@@ -24,8 +30,10 @@ public class Comparador {
 
     /** Para agregar otro algoritmo: new MiAlgoritmo() en esta lista. */
     static final List<Ordenamiento> ALGORITMOS = List.of(
-            new SelectionSort()
-            // , new BubbleSort(), new InsertionSort(), new MergeSort() ...
+            new SelectionSort(),
+            new InsertionSort(),
+            new MergeSort()
+            // , new MiAlgoritmo() ...
     );
 
     static final String[] CASOS = {"Aleatorio", "Ordenado", "Inverso"};
@@ -48,6 +56,7 @@ public class Comparador {
 
         LinkedHashMap<String, double[]> tiempoAleatorio = new LinkedHashMap<>();
         LinkedHashMap<String, double[]> compAleatorio = new LinkedHashMap<>();
+        LinkedHashMap<String, double[]> interAleatorio = new LinkedHashMap<>();
         List<String> csv = new ArrayList<>();
         csv.add("algoritmo,caso,n,comparaciones,intercambios,microsegundos");
 
@@ -59,11 +68,11 @@ public class Comparador {
             double[] teoricoComp = new double[puntos];
             double[] teoricoInter = new double[puntos];
             for (int i = 0; i < puntos; i++) {
-                teoricoComp[i] = xs[i] * (xs[i] - 1) / 2;
-                teoricoInter[i] = xs[i] - 1;
+                teoricoComp[i] = alg.teoricoComparaciones((int) xs[i]);
+                teoricoInter[i] = alg.teoricoIntercambios((int) xs[i]);
             }
-            comp.put("Teorico n(n-1)/2", teoricoComp);
-            inter.put("Maximo teorico n-1", teoricoInter);
+            comp.put("Peor caso teorico", teoricoComp);
+            inter.put("Maximo teorico", teoricoInter);
 
             boolean todoOk = true;
             for (String caso : CASOS) {
@@ -82,6 +91,10 @@ public class Comparador {
                     }
                     c[i] = alg.getComparaciones();
                     s[i] = alg.getIntercambios();
+                    if (c[i] > teoricoComp[i] + 1e-9 || s[i] > teoricoInter[i] + 1e-9) {
+                        todoOk = false;
+                        System.out.println("ERROR: supera el peor caso teorico con n=" + n + " caso " + caso);
+                    }
                     t[i] = medirMicrosegundos(alg, datos);
                     csv.add(alg.nombre() + "," + caso + "," + n + "," + (long) c[i] + "," + (long) s[i]
                             + "," + String.format("%.2f", t[i]).replace(',', '.'));
@@ -92,26 +105,33 @@ public class Comparador {
                 System.out.printf("%-10s n=%d: comparaciones=%d intercambios=%d tiempo=%.1f us%n",
                         caso, (int) xs[puntos - 1], (long) c[puntos - 1], (long) s[puntos - 1], t[puntos - 1]);
             }
-            System.out.println("Verificacion contra Arrays.sort: " + (todoOk ? "CORRECTO" : "CON ERRORES"));
-            System.out.println("Comparaciones reales == n(n-1)/2 en el caso aleatorio: "
-                    + Arrays.equals(comp.get("Aleatorio"), teoricoComp));
+            System.out.println("Verificacion (ordena bien y no supera el peor caso teorico): "
+                    + (todoOk ? "CORRECTO" : "CON ERRORES"));
+            System.out.printf("Comparaciones: mejor caso %d, aleatorio %d, peor caso teorico %d (n=%d)%n",
+                    (long) comp.get("Ordenado")[puntos - 1], (long) comp.get("Aleatorio")[puntos - 1],
+                    (long) teoricoComp[puntos - 1], (int) xs[puntos - 1]);
 
             String base = alg.nombre().toLowerCase().replace(' ', '_');
-            Grafica.guardar(alg.nombre() + ": comparaciones reales vs n(n-1)/2", "Cantidad de datos (n)",
+            Grafica.guardar(alg.nombre() + " " + alg.complejidad() + ": comparaciones reales vs peor caso teorico", "Cantidad de datos (n)",
                     "Comparaciones", xs, comp, new File(salida, base + "_comparaciones.png"));
-            Grafica.guardar(alg.nombre() + ": intercambios reales vs maximo n-1", "Cantidad de datos (n)",
-                    "Intercambios", xs, inter, new File(salida, base + "_intercambios.png"));
+            Grafica.guardar(alg.nombre() + ": intercambios o movimientos vs maximo teorico", "Cantidad de datos (n)",
+                    "Intercambios / movimientos", xs, inter, new File(salida, base + "_intercambios.png"));
             Grafica.guardar(alg.nombre() + ": tiempo de ejecucion", "Cantidad de datos (n)",
                     "Tiempo (microsegundos)", xs, tiempo, new File(salida, base + "_tiempo.png"));
 
             tiempoAleatorio.put(alg.nombre() + " " + alg.complejidad(), tiempo.get("Aleatorio"));
             compAleatorio.put(alg.nombre() + " " + alg.complejidad(), comp.get("Aleatorio"));
+            interAleatorio.put(alg.nombre() + " " + alg.complejidad(), inter.get("Aleatorio"));
         }
 
         Grafica.guardar("Comparacion de algoritmos: tiempo (datos aleatorios)", "Cantidad de datos (n)",
                 "Tiempo (microsegundos)", xs, tiempoAleatorio, new File(salida, "comparacion_tiempo.png"));
         Grafica.guardar("Comparacion de algoritmos: comparaciones (datos aleatorios)", "Cantidad de datos (n)",
                 "Comparaciones", xs, compAleatorio, new File(salida, "comparacion_comparaciones.png"));
+
+        Grafica.guardar("Comparacion de algoritmos: intercambios / movimientos (datos aleatorios)",
+                "Cantidad de datos (n)", "Intercambios / movimientos", xs, interAleatorio,
+                new File(salida, "comparacion_intercambios.png"));
 
         try (PrintWriter pw = new PrintWriter(new File(salida, "resultados.csv"), "UTF-8")) {
             csv.forEach(pw::println);

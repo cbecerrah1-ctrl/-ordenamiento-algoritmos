@@ -5,8 +5,8 @@ Producto didáctico y comparativo de ordenamiento para Análisis de Algoritmos (
 | Algoritmo | Complejidad | Responsable | Ficha |
 |-----------|-------------|-------------|-------|
 | Selection Sort | O(n²) | César Camilo Becerra Herrera | [docs/SelectionSort.md](docs/SelectionSort.md) |
-| Insertion Sort | O(n²) | (completar) | [docs/InsertionSort.md](docs/InsertionSort.md) |
-| Merge Sort | O(n log n) | (completar) | [docs/MergeSort.md](docs/MergeSort.md) |
+| Insertion Sort | O(n²) | César Camilo Becerra Herrera | [docs/InsertionSort.md](docs/InsertionSort.md) |
+| Merge Sort | O(n log n) | César Camilo Becerra Herrera | [docs/MergeSort.md](docs/MergeSort.md) |
 
 Comparativo: [docs/Comparativo.md](docs/Comparativo.md)
 

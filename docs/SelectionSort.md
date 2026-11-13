@@ -1,7 +1,7 @@
 # Selection Sort (ordenamiento por selección)
 
 ## Historia
-No tiene un inventor único: es una técnica tan natural que apareció de forma independiente en los primeros estudios de ordenamiento en computadores (décadas de 1950 y 1960). Donald Knuth la describe entre los métodos de ordenamiento por selección en *The Art of Computer Programming*. Resultó atractiva porque hace muy pocos intercambios (máximo n − 1), lo que importaba cuando escribir en memoria era costoso. Heap Sort puede verse como una mejora suya: también selecciona el mayor o el menor repetidamente, pero con un montículo (heap) que evita recorrer todo el arreglo.
+No tiene un inventor único: es una técnica tan natural que apareció de forma independiente en los primeros estudios de ordenamiento en computadores (décadas de 1950 y 1960). Donald Knuth la describe como «selección directa» (*straight selection*) en la sección 5.2.3 de *The Art of Computer Programming*, Vol. 3. Resultó atractiva porque hace muy pocos intercambios (máximo n − 1), lo que importaba cuando escribir en memoria era costoso. Heap Sort puede verse como una mejora suya: también selecciona el mayor o el menor repetidamente, pero con un montículo (heap) que evita recorrer todo el arreglo.
 
 ## Cómo funciona
 El arreglo se divide en una parte ordenada (izquierda) y otra sin ordenar. En cada vuelta se busca el menor de la parte sin ordenar y se intercambia con la primera posición de esa parte.
@@ -57,3 +57,8 @@ Esa cifra no depende del orden de los datos, por eso es O(n²) en el mejor, el p
 - `selection_sort_comparaciones.png`: las comparaciones reales (3 casos) caen exactamente sobre la curva n(n − 1)/2.
 - `selection_sort_intercambios.png`: los intercambios son lineales y nunca pasan de n − 1.
 - `selection_sort_tiempo.png`: el tiempo crece como una parábola; los tres casos quedan cercanos porque hacen las mismas comparaciones. Las diferencias pequeñas vienen del computador y de la JVM, no del algoritmo.
+
+## Referencias
+- Knuth, D. E. (1998). *The Art of Computer Programming, Vol. 3: Sorting and Searching* (2.ª ed.). Addison-Wesley.
+- Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2022). *Introduction to Algorithms* (4.ª ed.). MIT Press.
+- Sedgewick, R., & Wayne, K. (2011). *Algorithms* (4.ª ed.). Addison-Wesley.

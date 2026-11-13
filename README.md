@@ -10,6 +10,25 @@ Producto didáctico y comparativo de ordenamiento para Análisis de Algoritmos (
 
 Comparativo: [docs/Comparativo.md](docs/Comparativo.md)
 
+## Capturas
+Salida real del programa (n = 2000) y gráficas comparativas.
+
+**Demo paso a paso (Selection Sort)**
+
+![Demo Selection Sort](capturas/demo_selection_sort.png)
+
+**Verificación de los tres algoritmos**
+
+![Comparador](capturas/comparador_consola.png)
+
+**Comparaciones de los tres algoritmos (datos aleatorios)**
+
+![Comparaciones](capturas/comparacion_comparaciones.png)
+
+**Tiempo de los tres algoritmos (datos aleatorios)**
+
+![Tiempo](capturas/comparacion_tiempo.png)
+
 ## Estructura
 ```
 src/ordenamiento/
@@ -20,8 +39,10 @@ src/ordenamiento/
   DemoSelectionSort.java  demo paso a paso (escribes los números)
   Comparador.java         verifica, mide y genera las gráficas
   Grafica.java            dibuja los PNG
+capturas/                 capturas de la ejecución y de las gráficas
 docs/                     una ficha por algoritmo
-resultados/               gráficas PNG y resultados.csv
+resultados/               gráficas PNG y resultados.csv (hasta 2 000 datos)
+resultados_5000/          las mismas gráficas con hasta 5 000 datos
 ```
 
 ## Cómo ejecutar
@@ -46,3 +67,7 @@ Parámetros opcionales de `Comparador`: carpeta de salida, n máximo (2000) y pa
 - Que ninguna medición supere el peor caso teórico de cada algoritmo (comparaciones e intercambios).
 
 Los tiempos varían entre ejecuciones y equipos; las comparaciones e intercambios no.
+## Referencias
+- Knuth, D. E. (1998). *The Art of Computer Programming, Vol. 3: Sorting and Searching* (2.ª ed.). Addison-Wesley.
+- Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2022). *Introduction to Algorithms* (4.ª ed.). MIT Press.
+- Sedgewick, R., & Wayne, K. (2011). *Algorithms* (4.ª ed.). Addison-Wesley.

@@ -1,7 +1,7 @@
 # Merge Sort (ordenamiento por mezcla)
 
 ## Historia
-Lo propuso John von Neumann en 1945 y es uno de los primeros algoritmos de ordenamiento pensados para computadores. Es el ejemplo clásico de la técnica «divide y vencerás»: se parte el problema en partes más pequeñas, se resuelven y se combinan.
+Knuth (*The Art of Computer Programming*, Vol. 3, sección 5.2.4) atribuye a John von Neumann su primera descripción, en 1945, para el computador EDVAC. Es uno de los primeros algoritmos de ordenamiento pensados para computadores. Es el ejemplo clásico de la técnica «divide y vencerás»: se parte el problema en partes más pequeñas, se resuelven y se combinan.
 
 ## Cómo funciona
 1. Se divide el arreglo en dos mitades.
@@ -38,3 +38,8 @@ El arreglo se divide en log₂ n niveles y en cada nivel se mezclan n elementos,
 
 ## Verificación
 Con n = 2000 el programa midió 19 363 comparaciones con datos aleatorios, por debajo del peor caso teórico de 19 953. Selection e Insertion Sort hacen del orden de un millón o más.
+
+## Referencias
+- Knuth, D. E. (1998). *The Art of Computer Programming, Vol. 3: Sorting and Searching* (2.ª ed.). Addison-Wesley.
+- Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2022). *Introduction to Algorithms* (4.ª ed.). MIT Press.
+- Sedgewick, R., & Wayne, K. (2011). *Algorithms* (4.ª ed.). Addison-Wesley.
